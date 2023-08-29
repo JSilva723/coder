@@ -1,0 +1,40 @@
+<button onclick="showCart()">Ver el carro</button>
+<button onclick="logout()">Salir</button>
+<br />
+<div class="home__main__container">
+    <div class="home__container">
+        <h1>Lista de poductos</h1>
+        <br />
+        <h2>{{name}}</h2>
+        <h3>ROL: {{role}}</h3>
+        <br />
+        {{#if isValid}}
+        <div class="home__card__container">
+            {{#each payload}}
+            <div class="home__card">
+                <p>{{this.title}} &nbsp; <a href="http://localhost:8080/product-detail/{{this._id}}">Detalle</a></p>
+                <button onclick="addToCart('{{this._id}}')">Agregar al carro</button>
+            </div>
+            <br />
+            {{/each}}
+        </div>
+        <br />
+        <div class="home__footer">
+            {{#if hasPrevPage}}
+            <a href={{this.prevLink}}>
+                << Anterior</a>
+                    {{/if}}
+                    &nbsp;
+                    {{this.page}}
+                    &nbsp;
+                    {{#if hasNextPage}}
+                    <a href={{this.nextLink}}>Siguiente >></a>
+                    {{/if}}
+        </div>
+        {{else}}
+        <h1>No hay productos para mostrar</h1>
+        {{/if}}
+    </div>
+    <div id="currentCart"></div>
+</div>
+<script src="/js/{{script}}"></script>

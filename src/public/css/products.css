@@ -1,0 +1,31 @@
+h1 {
+    text-align: center;
+}
+
+.home__main__container{
+    display: flex;
+}
+
+.home__container{
+    margin-right: 100px;
+}
+
+.home__card__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home__card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2rem;
+    width: 40vw;
+}
+
+.home__footer {
+    display: flex;
+    justify-content: center;
+}
