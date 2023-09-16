@@ -1,4 +1,4 @@
-# Clase N° 21
+# Descripcion
 Servidor basado en Express que contenga los endpoints y servicios necesarios para gestionar los productos y carritos de compra en el e-commerce.
 ***
 ## Inicio
@@ -16,7 +16,7 @@ npm start
 ```
 Salida de este comando
 ```sh
-> coder-class-21@1.0.0 start
+> coder@1.0.0 start
 > node src/app.js
 Your server listen in port: 8080
 ```
