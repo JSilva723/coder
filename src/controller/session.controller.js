@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import { env } from "../config/env.js"
 
 export class SessionController {
     constructor(manager) {
@@ -7,7 +7,7 @@ export class SessionController {
 
     getUser = async (req, res, next) => {
         const { email, password } = req.body
-        if (email === process.env.ADMIN_EMAIL  && password === process.env.ADMIN_PASSWORD ) {
+        if (email === env.ADMIN_EMAIL  && password === env.ADMIN_PASSWORD ) {
             req.session.name = 'adminCoder'
             req.session.role = 'admin'
             return res.status(200).json({ status: 'succes' })

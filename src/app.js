@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import express from 'express'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
@@ -7,6 +6,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import { Server as WebSocketServer } from 'socket.io'
 import passport from 'passport'
+import { env } from './config/env.js'
 import { __dirname, eventEmitter } from './utils.js'
 import { sessionRouter } from './routes/session.router.js'
 import { productRouter } from './routes/product.router.js'
@@ -15,8 +15,8 @@ import { viewsRouter } from './routes/views.router.js'
 import { errorHandler } from './routes/errorHandler.js'
 import { initializePassport } from './config/passport.config.js'
 
-const PORT = process.env.PORT || 8080
-const MONGO_URI = process.env.MONGO_URI
+const PORT = env.PORT
+const MONGO_URI = env.MONGO_URI
 
 const app = express()
 initializePassport()
