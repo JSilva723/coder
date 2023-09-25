@@ -13,6 +13,7 @@
     - [Actulizar los productos del carro](#actulizar-los-productos-del-carro)
     - [Actulizar cantidad de un producto](#actulizar-cantidad-de-un-producto)
     - [Eliminar todos los productos del carro](#eliminar-todos-los-productos-del-carro)
+    - [Finalizar compra](#finañizar-compra)
 ***
 ### Listar los productos
 <p align="right" >
@@ -437,5 +438,23 @@ HTTP/1.1 200 OK
     "_id": "64dbfd81389185a790b1c916",
     "products": [],
     "__v": 8
+}
+```
+### Finalizar compra
+<p align="right" >
+  <a href="#uso-de-la-api">Indice</a>
+</p>
+
+| Metodo | URL                                  |
+|--------|--------------------------------------|
+| GET    | http://localhost:8080/api/carts/:cid |
+
+<pre>GET   http://localhost:8080/api/carts/64dbfd81389185a790b1c916/purchase</pre>
+
+HTTP/1.1 200 OK
+```json
+{
+    "unprocessed": [],
+    "success": "Send email to <email of purchaser>"
 }
 ```
