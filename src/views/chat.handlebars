@@ -1,0 +1,22 @@
+<main>
+    <h1>Chat</h1>
+    <div id="loggin" class="loggin">
+        <p>Ingresa un email para identificarte en el chat</p>
+        <div>
+            <input placeholder="Email" id="input-loggin" />
+            <button id="btn-loggin">Ingresar</button>
+        </div>
+    </div>
+    <div class="messages">
+        <ul id="messages">
+            {{#each messages}}
+            <li>{{this.user}}: {{this.message}}</li>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div id="chat-box"></div>
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/{{script}}"></script>
