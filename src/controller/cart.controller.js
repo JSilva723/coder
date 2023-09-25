@@ -1,5 +1,5 @@
 export class CartController {
-    constructor(manager) {
+    constructor (manager) {
         this.manager = manager
     }
 
@@ -49,9 +49,9 @@ export class CartController {
         } catch (err) { next(err) }
     }
 
-    updateProducts = async ({ params: { cid } }, res, next) => {
+    purchase = async ({ params: { cid }, session: { name } }, res, next) => {
         try {
-            const cart = await this.manager.updateProducts(cid, [])
+            const cart = await this.manager.purchase(cid, name)
             res.send(cart)
         } catch (err) { next(err) }
     }

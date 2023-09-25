@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { uuidv4 } from '../../utils'
+import { uuidv4 } from '../../utils.js'
 
 export const ticketCollection = 'tickets'
 
@@ -13,7 +13,7 @@ const ticketSchema = new mongoose.Schema({
     },
     purchaser: {
         type: String
-    },
+    }
 }, { timestamps: true })
 
 export const ticketModel = mongoose.model(ticketCollection, ticketSchema)

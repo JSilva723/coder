@@ -93,7 +93,7 @@ viewsRouter.get('/carts/:cid', async ({ params: { cid }, session }, res) => {
     })
 })
 
-viewsRouter.get('/chat',access('user'), async (_req, res) => {
+viewsRouter.get('/chat', access('user'), async (_req, res) => {
     const messages = await messageManager.getMessages()
     res.render('chat', {
         title: 'chat',

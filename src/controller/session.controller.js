@@ -1,13 +1,13 @@
-import { env } from "../config/env.js"
+import { env } from '../config/env.js'
 
 export class SessionController {
-    constructor(manager) {
+    constructor (manager) {
         this.manager = manager
     }
 
     getUser = async (req, res, next) => {
         const { email, password } = req.body
-        if (email === env.ADMIN_EMAIL  && password === env.ADMIN_PASSWORD ) {
+        if (email === env.ADMIN_EMAIL && password === env.ADMIN_PASSWORD) {
             req.session.name = 'adminCoder'
             req.session.role = 'admin'
             return res.status(200).json({ status: 'succes' })
