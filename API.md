@@ -13,7 +13,7 @@
     - [Actulizar los productos del carro](#actulizar-los-productos-del-carro)
     - [Actulizar cantidad de un producto](#actulizar-cantidad-de-un-producto)
     - [Eliminar todos los productos del carro](#eliminar-todos-los-productos-del-carro)
-    - [Finalizar compra](#finañizar-compra)
+    - [Finalizar compra](#finalizar-compra)
 ***
 ### Listar los productos
 <p align="right" >
