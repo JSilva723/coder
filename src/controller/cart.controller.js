@@ -1,5 +1,7 @@
+import { sendMail } from '../utils.js'
+
 export class CartController {
-    constructor(manager) {
+    constructor (manager) {
         this.manager = manager
     }
 
@@ -49,10 +51,14 @@ export class CartController {
         } catch (err) { next(err) }
     }
 
-    updateProducts = async ({ params: { cid } }, res, next) => {
+    purchase = async ({ params: { cid }, session: { name } }, res, next) => {
         try {
-            const cart = await this.manager.updateProducts(cid, [])
-            res.send(cart)
+            const purchased = await this.manager.purchase(cid, name)
+            await sendMail(purchased.ticket)
+            res.send({
+                unprocessed: purchased.unprocessed,
+                success: `Send emal to ${purchased.ticket.purchaser}`
+            })
         } catch (err) { next(err) }
     }
 }

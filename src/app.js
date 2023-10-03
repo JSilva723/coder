@@ -12,7 +12,7 @@ import { sessionRouter } from './routes/session.router.js'
 import { productRouter } from './routes/product.router.js'
 import { cartRouter } from './routes/cart.router.js'
 import { viewsRouter } from './routes/views.router.js'
-import { errorHandler } from './routes/errorHandler.js'
+import { errorHandler } from './middleware/errorHandler.js'
 import { initializePassport } from './config/passport.config.js'
 
 const PORT = env.PORT

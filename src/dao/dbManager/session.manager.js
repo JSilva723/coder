@@ -1,5 +1,5 @@
 import { BadRequestError, NotFoundError } from '../../utils.js'
-import { userModel } from '../models/user.js'
+import { userModel } from '../models/user.model.js'
 
 export class SessionManager {
     async addUser (data) {

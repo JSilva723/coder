@@ -1,10 +1,13 @@
 import { Router } from 'express'
 import { ProductManager as ProductDBManager } from '../dao/dbManager/product.manager.js'
 import { CartManager as CartDBManager } from '../dao/dbManager/cart.manager.js'
+import { MessageManager as MessageDBManager } from '../dao/dbManager/message.manager.js'
+import { access } from '../middleware/access.js'
 
 const viewsRouter = Router()
 const productManager = ProductDBManager.getInstance()
 const cartManager = CartDBManager.getInstance()
+const messageManager = new MessageDBManager()
 
 viewsRouter.get('/', (req, res) => {
     if (req.session.name) {
@@ -87,6 +90,16 @@ viewsRouter.get('/carts/:cid', async ({ params: { cid }, session }, res) => {
     res.render('carts', {
         title: 'Carts',
         products: cart.products
+    })
+})
+
+viewsRouter.get('/chat', access('user'), async (_req, res) => {
+    const messages = await messageManager.getMessages()
+    res.render('chat', {
+        title: 'chat',
+        script: 'chat.js',
+        style: 'chat.css',
+        messages
     })
 })
 

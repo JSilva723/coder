@@ -1,7 +1,7 @@
-import { eventEmitter } from "../utils.js"
+import { eventEmitter } from '../utils.js'
 
 export class ProductController {
-    constructor(manager) {
+    constructor (manager) {
         this.manager = manager
     }
 
