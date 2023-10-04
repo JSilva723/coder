@@ -14,6 +14,7 @@ import { cartRouter } from './routes/cart.router.js'
 import { viewsRouter } from './routes/views.router.js'
 import { errorHandler } from './middleware/errorHandler.js'
 import { initializePassport } from './config/passport.config.js'
+import { mockRouter } from './routes/mock.router.js'
 
 const PORT = env.PORT
 const MONGO_URI = env.MONGO_URI
@@ -40,6 +41,7 @@ app.use(viewsRouter)
 app.use('/api/session', sessionRouter)
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
+app.use('/api/mockingproducts', mockRouter)
 app.use('/api/*', (_req, res) => res.status(404).json({ error: 'Endpoint not found' }))
 app.use('/*', (_req, res) => res.redirect('/'))
 app.use(errorHandler)
