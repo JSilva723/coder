@@ -15,6 +15,8 @@ import { viewsRouter } from './routes/views.router.js'
 import { errorHandler } from './middleware/errorHandler.js'
 import { initializePassport } from './config/passport.config.js'
 import { mockRouter } from './routes/mock.router.js'
+import { logTestRouter } from './routes/logTest.router.js'
+import { logger } from './utils.js'
 
 const PORT = env.PORT
 const MONGO_URI = env.MONGO_URI
@@ -42,23 +44,25 @@ app.use('/api/session', sessionRouter)
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
 app.use('/api/mockingproducts', mockRouter)
+app.use('/api/loggerTest', logTestRouter)
 app.use('/api/*', (_req, res) => res.status(404).json({ error: 'Endpoint not found' }))
 app.use('/*', (_req, res) => res.redirect('/'))
 app.use(errorHandler)
 
 async function main () {
     await mongoose.connect(MONGO_URI)
-    console.log('Conected with DB') // eslint-disable-line no-console
+    logger.log('info','Conected with DB')
     const httpServer = app.listen(PORT, () => {
-        console.log(`Your server listen in port: ${PORT}`) // eslint-disable-line no-console
+        logger.log('info', `Your server listen in port: ${PORT}`)
     })
     const webSocketServer = new WebSocketServer(httpServer)
     webSocketServer.on('connection', () => {
-        console.log('Cliente conectado') // eslint-disable-line no-console
+        logger.log('info', 'Cliente conectado') 
     })
     eventEmitter.on('update_product', function (products) {
         webSocketServer.sockets.emit('products', products)
     })
 }
 
-main().catch((err) => console.log(err)) // eslint-disable-line no-console
+main().catch((err) => logger.log('fatal', err))
+

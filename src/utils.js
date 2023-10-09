@@ -2,6 +2,7 @@ import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 import EventEmitter from 'events'
 import nodemailer from 'nodemailer'
+import winston from 'winston'
 import { env } from './config/env.js'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -53,3 +54,54 @@ export const sendMail = async (ticket) => {
         `
     })
 }
+
+const logOptions = {
+    levels: {
+        debug: 5, 
+        http: 4, 
+        info: 3,
+        warning: 2, 
+        error: 1, 
+        fatal: 0
+    },
+    colors: {
+        debug: 'white', 
+        http: 'green', 
+        info: 'blue',
+        warning: 'yellow', 
+        error: 'grey', 
+        fatal: 'red'
+    }
+}
+
+export const logger = winston.createLogger({
+    levels: logOptions.levels,
+});
+
+if(env.NODE_ENV === 'production'){
+    const console = new winston.transports.Console({
+        level: 'info',
+        format: winston.format.combine(
+            winston.format.colorize({ colors: logOptions.colors }),
+            winston.format.simple(),
+        )
+    })
+    const file = new winston.transports.File({
+        filename: './errors.log',
+        level: 'warning',
+        format:  winston.format.simple()
+    })
+    logger.add(file)
+    logger.add(console)
+}else{
+    const console = new winston.transports.Console({
+        level: 'debug',
+        format: winston.format.combine(
+            winston.format.colorize({ colors: logOptions.colors }),
+            winston.format.simple(),
+        )
+    })
+    logger.add(console)
+}
+
+
