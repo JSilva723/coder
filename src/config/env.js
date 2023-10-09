@@ -8,5 +8,6 @@ export const env = {
     PORT: process.env.PORT || 8080,
     MONGO_URI: process.env.MONGO_URI,
     EMAIL_USER: process.env.EMAIL_USER,
-    EMAIL_PASS: process.env.EMAIL_PASS
+    EMAIL_PASS: process.env.EMAIL_PASS,
+    NODE_ENV: process.env.NODE_ENV
 }

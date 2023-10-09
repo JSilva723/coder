@@ -1,3 +1,5 @@
+import { logger } from "../utils.js"
+
 export const errorHandler = (err, _req, res, _next) => {
     if (err.statusCode) {
         return res.status(err.statusCode).send({ error: [err.message] })
@@ -16,6 +18,6 @@ export const errorHandler = (err, _req, res, _next) => {
         const msg = `The id ${err.value} is not valid. ${err.reason}`
         return res.status(400).json({ error: msg })
     }
-    console.error(err) // eslint-disable-line no-console
+    logger.log('error', err) // eslint-disable-line no-console
     res.status(500).json({ error: ['Internal error'] })
 }
